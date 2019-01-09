@@ -15,6 +15,7 @@ highlight LineNr ctermfg=yellow
 
 set tabstop=2
 set shiftwidth=2
+set expandtab
 
 set belloff=all
 
