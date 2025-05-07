@@ -1,9 +1,10 @@
-export PATH=/Applications/Postgres.app/Contents/Versions/17/bin/:$HOME/miniconda3/bin:$HOME/.cargo/bin:/opt/homebrew/opt/ruby/bin:$PATH
+export PATH=/Applications/Postgres.app/Contents/Versions/17/bin/:$HOME/miniconda3/bin:$HOME/.elan/bin:$HOME/.cargo/bin:/opt/homebrew/opt/ruby/bin:$HOME/.local/bin/env:$PATH
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
 alias ls=eza
-alias ollamau="sh ~/bin/ollama-update.sh"
+alias ollamau="sh $HOME/bin/ollama-update.sh"
+alias shutport="sh $HOME/bin/shutport.sh $1"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -77,6 +78,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(cp git-prompt extract eza python rsync copyfile fzf)
+# plugins+=nvm
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,3 +114,26 @@ source $ZSH/oh-my-zsh.sh
 # Enable nvm by uncommenting following line, then you can use node.
 # zstyle ':omz:plugins:nvm' autoload yes
 eval "$(rbenv init - zsh)"
+
+. "$HOME/.local/bin/env"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/ujjwal/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+#
+#
+#HISTFILE=$HOME/.zhistory # location of the history file
+HISTFILESIZE=100000 # history limit of the file on disk
+HISTSIZE=200000 # current session's history limit
+SAVEHIST=500000 # zsh saves this many lines from the in-memory history list to the history file upon shell exit
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don\'t record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don\'t record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don\'t write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.

@@ -16,11 +16,24 @@ set wildmode=longest,list   " get bash-like tab completions
 filetype plugin indent on   "allow auto-indenting depending on file type
 syntax on                   " syntax highlighting
 set mouse=a                 " enable mouse click
-set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 " set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 " highlight Comment ctermfg=green
+
+" Enable system clipboard support
+set clipboard=unnamedplus
+
+" Map Command + C to copy selected text to system clipboard
+vnoremap <C-c> "*y
+
+" Map Command + V to paste from system clipboard
+nnoremap <C-v> "*p
+inoremap <C-v> <C-R>*
+cnoremap <C-v> <C-R>*
+
+" Optional: Map Command + X to cut selected text
+vnoremap <C-x> "+d
 
 
 call plug#begin()
