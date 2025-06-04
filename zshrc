@@ -1,10 +1,11 @@
-export PATH=/Applications/Postgres.app/Contents/Versions/17/bin/:$HOME/miniconda3/bin:$HOME/.elan/bin:$HOME/.cargo/bin:/opt/homebrew/opt/ruby/bin:$HOME/.local/bin/env:$PATH
+export PATH=/Applications/Postgres.app/Contents/Versions/17/bin/:$HOME/miniconda3/bin:$HOME/.local/bin:$HOME/.cargo/bin:/opt/homebrew/opt/ruby/bin:/Users/ujjwal/.codeium/windsurf/bin:$PATH
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
 alias ls=eza
 alias ollamau="sh $HOME/bin/ollama-update.sh"
-alias shutport="sh $HOME/bin/shutport.sh $1"
+alias kconnect="sh $HOME/bin/kconnect.sh"
+alias shutport="sh $HOME/bin/shutport.sh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -78,7 +79,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(cp git-prompt extract eza python rsync copyfile fzf)
-# plugins+=nvm
+plugins+=(nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,18 +116,25 @@ source $ZSH/oh-my-zsh.sh
 # zstyle ':omz:plugins:nvm' autoload yes
 eval "$(rbenv init - zsh)"
 
-. "$HOME/.local/bin/env"
+. "$HOME/.local/bin/env" 
+
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/ujjwal/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
-#
-#
-#HISTFILE=$HOME/.zhistory # location of the history file
-HISTFILESIZE=100000 # history limit of the file on disk
-HISTSIZE=200000 # current session's history limit
-SAVEHIST=500000 # zsh saves this many lines from the in-memory history list to the history file upon shell exit
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+
+# History Settings
+# HISTFILE=$HOME/.zhistory       # location of the history file
+HISTFILESIZE=100000              # history limit of the file on disk
+HISTSIZE=200000                  # current session's history limit
+SAVEHIST=500000       # zsh saves this many lines from the in-memory history list to the history file upon shell exit
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
 setopt SHARE_HISTORY             # Share history between all sessions.
